@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 import { Activity } from '../models/activity';
-import { resolve } from 'path';
-import { error } from 'console';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) =>{
