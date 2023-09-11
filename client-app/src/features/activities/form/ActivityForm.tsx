@@ -12,7 +12,7 @@ import MyTextArea from '../../../app/common/form/MyTextArea';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import MyDateInput from '../../../app/common/form/MyDateInput';
-import { ActivityFormValues } from '../../../app/models/activity';
+import { Activity } from '../../../app/models/activity';
 
 export default observer(function ActivityForm() {
     const { activityStore } = useStore();
@@ -20,7 +20,15 @@ export default observer(function ActivityForm() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
+    const [activity, setActivity] = useState<Activity>({
+        id:'',
+        title: '',
+        category: '',
+        description: '',
+        date: null,
+        city: '',
+        venue: ''
+    })
 
     const validationSchema = Yup.object({
         title: Yup.string().required('The event title is required'),
@@ -32,18 +40,18 @@ export default observer(function ActivityForm() {
     })
 
     useEffect(() => {
-        if (id) loadActivity(id).then(activity => setActivity(new ActivityFormValues(activity)))
+        if (id) loadActivity(id).then(activity => setActivity(activity!))
     }, [id, loadActivity])
 
-    function handleFormSubmit(activity: ActivityFormValues) {
+    function handleFormSubmit(activity: Activity) {
         if (!activity.id) {
             let newActivity = {
                 ...activity,
                 id: uuid()
             }
-            // createActivity(newActivity).then(() => navigate(`/activities/${newActivity.id}`))
+            createActivity(newActivity).then(() => navigate(`/activities/${newActivity.id}`))
         } else {
-            // updateActivity(activity).then(() => navigate(`/activities/${activity.id}`))
+            updateActivity(activity).then(() => navigate(`/activities/${activity.id}`))
         }
     }
 
