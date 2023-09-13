@@ -1,8 +1,6 @@
-using Domain;
-
-namespace Application.Profiles
+namespace Application.Activities
 {
-    public class Profile
+    public class AttendeeDto
     {
         public string Username { get; set; }
         public string DisplayName { get; set; }
@@ -11,6 +9,5 @@ namespace Application.Profiles
         // public bool Following { get; set; }
         // public int FollowersCount { get; set; }
         // public int FollowingCount { get; set; }
-        public ICollection<Photo> Photos { get; set; }
     }
 }
