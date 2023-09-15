@@ -5,14 +5,14 @@ import ProfileEditForm from "./ProfileEditForm";
 import { observer } from 'mobx-react-lite';
 
 export default observer(function ProfileAbout() {
-    // const { profileStore } = useStore();
-    // const { isCurrentUser, profile } = profileStore;
+    const { profileStore } = useStore();
+    const { isCurrentUser, profile } = profileStore;
     const [editMode, setEditMode] = useState(false);
 
     return (
         <Tab.Pane>
             <Grid>
-                {/* <Grid.Column width='16'>
+                <Grid.Column width='16'>
                     <Header
                         floated='left'
                         icon='user'
@@ -24,11 +24,11 @@ export default observer(function ProfileAbout() {
                             content={editMode ? 'Cancel' : 'Edit Profile'}
                             onClick={() => setEditMode(!editMode)}
                         />)}
-                </Grid.Column> */}
-                {/* <Grid.Column width='16'>
+                </Grid.Column>
+                <Grid.Column width='16'>
                     {editMode ? <ProfileEditForm setEditMode={setEditMode} /> :
                         <span style={{ whiteSpace: 'pre-wrap' }}>{profile?.bio}</span>}
-                </Grid.Column> */}
+                </Grid.Column>
             </Grid>
         </Tab.Pane>
     )
