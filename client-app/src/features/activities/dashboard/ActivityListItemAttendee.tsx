@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite";
 import { Profile } from '../../../app/models/profile';
 import { Link } from 'react-router-dom';
 import ProfileCard from '../../profiles/ProfileCard';
-// import ProfileCard from '../../profiles/ProfileCard';
 
 interface Props {
     attendees: Profile[];
@@ -24,7 +23,7 @@ export default observer(function ActivityListItemAttendee({ attendees }: Props) 
                     trigger={
                         <List.Item as={Link} to={`/profiles/${attendee.username}`}>
                             <Image size='mini'
-                                // style={attendee.following ? styles : null}
+                                style={attendee.following ? styles : null}
                                 bordered
                                 circular
                                 src={attendee.image || `/assets/user.png`} />
@@ -37,13 +36,5 @@ export default observer(function ActivityListItemAttendee({ attendees }: Props) 
                 </Popup>
             ))}
         </List>
-    //     <List horizontal>
-    //     {attendees.map(attendee => (
-    //                 <List.Item key={attendee.username} as={Link} to={`/profiles/${attendee.username}`}>
-    //                     <Image size='mini'
-    //                         src={attendee.image || `/assets/user.png`} />
-    //                 </List.Item>
-    //     ))}
-    // </List>
     )
 })
