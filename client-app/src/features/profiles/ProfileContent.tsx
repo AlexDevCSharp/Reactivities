@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default observer(function ProfileContent({ profile }: Props) {
-    // const {profileStore} = useStore();
+    const {profileStore} = useStore();
 
     const panes = [
         { menuItem: 'About', render: () => <ProfileAbout /> },
@@ -27,7 +27,7 @@ export default observer(function ProfileContent({ profile }: Props) {
             menu={{ fluid: true, vertical: true }}
             menuPosition='right'
             panes={panes}
-            // onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
+            onTabChange={(e, data) => profileStore.setActiveTab(data.activeIndex)}
         />
     )
 })
