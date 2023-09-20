@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [AllowAnonymous]
-    public class ActivitiesController: BaseApiController
-    {     
-
-        [HttpGet] //api/activities
-        public async Task<ActionResult<List<Activity>>> GetActivities([FromQuery] ActivityParams param)
+    public class ActivitiesController : BaseApiController
+    {
+        [HttpGet]
+        public async Task<IActionResult> GetActivities([FromQuery] ActivityParams param)
         {
-            return HandlePagedResult(await Mediator.Send(new List.Query{Params = param}));
+            return HandlePagedResult(await Mediator.Send(new List.Query { Params = param }));
         }
 
         [HttpGet("{id}")]
@@ -30,7 +28,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "IsActivityHost")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditActivity(Guid id, Activity activity)
+        public async Task<IActionResult> Edit(Guid id, Activity activity)
         {
             activity.Id = id;
             return HandleResult(await Mediator.Send(new Edit.Command { Activity = activity }));
@@ -38,7 +36,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "IsActivityHost")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActivity(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
