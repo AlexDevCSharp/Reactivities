@@ -1,9 +1,9 @@
+import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import {Button, Header, Item, Segment, Image, Label} from 'semantic-ui-react'
-import {Activity} from "../../../app/models/activity";
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
+import { Button, Header, Item, Segment, Image, Label } from 'semantic-ui-react'
+import { Activity } from "../../../app/models/activity";
 import { useStore } from '../../../app/stores/store';
 
 const activityImageStyle = {
@@ -23,15 +23,15 @@ interface Props {
     activity: Activity
 }
 
-export default observer (function ActivityDetailedHeader({activity}: Props) {
+export default observer(function ActivityDetailedHeader({ activity }: Props) {
     const { activityStore: { updateAttendeance, loading, cancelActivityToggle } } = useStore();
     return (
         <Segment.Group>
-            <Segment basic attached='top' style={{padding: '0'}}>
+            <Segment basic attached='top' style={{ padding: '0' }}>
                 {activity.isCancelled &&
                     <Label style={{ position: 'absolute', zIndex: 1000, left: -14, top: 20 }}
                         ribbon color='red' content='Cancelled' />}
-                <Image src={`/assets/categoryImages/${activity.category}.jpg`} fluid style={activityImageStyle}/>
+                <Image src={`/assets/categoryImages/${activity.category}.jpg`} fluid style={activityImageStyle} />
                 <Segment style={activityImageTextStyle} basic>
                     <Item.Group>
                         <Item>
@@ -39,11 +39,11 @@ export default observer (function ActivityDetailedHeader({activity}: Props) {
                                 <Header
                                     size='huge'
                                     content={activity.title}
-                                    style={{color: 'white'}}
+                                    style={{ color: 'white' }}
                                 />
-                                <p>{format(activity.date!, 'dd MMM yyyy h:mm aa')}</p>
+                                <p>{format(activity.date!, 'dd MMM yyyy')}</p>
                                 <p>
-                                Hosted by <strong><Link to={`/profiles/${activity.hostUsername}`}>{activity.hostUsername}</Link></strong>
+                                    Hosted by <strong><Link to={`/profiles/${activity.hostUsername}`}>{activity.hostUsername}</Link></strong>
                                 </p>
                             </Item.Content>
                         </Item>
@@ -51,7 +51,7 @@ export default observer (function ActivityDetailedHeader({activity}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-            {activity.isHost ? (
+                {activity.isHost ? (
                     <>
                         <Button
                             color={activity.isCancelled ? 'green' : 'red'}
@@ -71,6 +71,7 @@ export default observer (function ActivityDetailedHeader({activity}: Props) {
                             Manage Event
                         </Button>
                     </>
+
                 ) : activity.isGoing ? (
                     <Button onClick={updateAttendeance} 
                         loading={loading}>Cancel attendance</Button>

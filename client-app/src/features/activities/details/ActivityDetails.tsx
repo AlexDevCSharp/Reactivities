@@ -19,7 +19,7 @@ export default observer(function ActivityDetails() {
         return () => clearSelectedActivity();
     }, [id, loadActivity, clearSelectedActivity]);
 
-    if (loadingInitial || !activity) return <LoadingComponent content=""/>
+    if (loadingInitial || !activity) return <LoadingComponent />
 
     return (
         <Grid>

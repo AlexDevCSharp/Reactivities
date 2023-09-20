@@ -23,7 +23,6 @@ export default observer(function ProfileCard({ profile }: Props) {
                 <Card.Header>{profile.displayName}</Card.Header>
                 <Card.Description>
                     {truncate(profile.bio)}
-                    Bio
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>

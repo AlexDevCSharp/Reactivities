@@ -26,6 +26,7 @@ export default observer(function PhotoUploadWidget({ loading, uploadPhoto }: Pro
     }, [files]);
 
     return (
+        <>
             <Grid>
                 <Grid.Row />
                 <Grid.Column width={4}>
@@ -54,5 +55,6 @@ export default observer(function PhotoUploadWidget({ loading, uploadPhoto }: Pro
                     )}
                 </Grid.Column>
             </Grid>
+        </>
     )
 })
