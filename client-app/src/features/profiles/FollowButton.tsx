@@ -17,9 +17,7 @@ export default observer(function FollowButton({profile}: Props) {
     function handleFollow(e: SyntheticEvent, username: string) {
         e.preventDefault();
         profile.following ? updateFollowing(username, false) : updateFollowing(username, true);
-        ;
     }
-
 
     return (
         <Reveal animated='move'>
