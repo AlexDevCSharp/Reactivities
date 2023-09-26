@@ -8,8 +8,8 @@ primary_region = "yyz"
 
 [env]
   ASPNETCORE_URLS="http://+:8080"
-  Cloudinary__CloudName: "drmcu5khc"
-  Cloudinary__ApiKey: "752552293275684"
+  Cloudinary__CloudName="drmcu5khc"
+  Cloudinary__ApiKey="752552293275684"
 
 [build]
   image = "alexdevcsharp/reactivities:latest"
